@@ -201,42 +201,61 @@
             box-shadow: 0 8px 20px rgba(42, 157, 143, 0.6);
         }
         
-        /* Responsive design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .yes-button, .no-button {
-                font-size: 1.7rem;
-                padding: 15px 30px;
-                min-width: 170px;
-            }
-            
-            .buttons-container {
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .yes-button, .no-button {
-                font-size: 1.5rem;
-                padding: 12px 25px;
-                min-width: 140px;
-            }
-            
-            .fullscreen-message h2 {
-                font-size: 2.5rem;
-            }
-            
-            .fullscreen-message p {
-                font-size: 1.3rem;
-            }
-        }
+        /* ===== MOBILE FRIENDLY FIX ===== */
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .valentine-image {
+    width: 200px;
+    max-width: 80%;
+    border-radius: 12px;
+}
+
+
+    .buttons-container {
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .yes-button,
+    .no-button {
+        font-size: 1.2rem;
+        padding: 12px 25px;
+        min-width: 130px;
+    }
+
+    .counter {
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+
+    .fullscreen-message h2 {
+        font-size: 2.2rem;
+    }
+
+    .fullscreen-message p {
+        font-size: 1.2rem;
+    }
+
+    .reset-button {
+        font-size: 1.2rem;
+        padding: 12px 30px;
+    }
+}
+
     </style>
 </head>
 <body>
