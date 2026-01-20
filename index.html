@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selin mau gaa jadi valentine nya akuu?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffafcc 0%, #cdb4db 100%);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        h1 {
+            color: #e63946;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: 800;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .yes-button {
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+            font-weight: bold;
+            min-width: 200px;
+            z-index: 5;
+        }
+        
+        .yes-button:hover {
+            background-color: #21867a;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.6);
+        }
+        
+        .no-button {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            font-weight: bold;
+            min-width: 200px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .no-button:hover {
+            background-color: #d32f3c;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.6);
+        }
+        
+        .no-button:active {
+            transform: translateY(0);
+        }
+        
+        .message {
+            margin-top: 25px;
+            font-size: 1.4rem;
+            color: #333;
+            min-height: 40px;
+            font-style: italic;
+        }
+        
+        .counter {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #e63946;
+            opacity: 0.7;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+                opacity: 1;
+            }
+        }
+        
+        .fullscreen-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+        
+        .fullscreen-message.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .fullscreen-message h2 {
+            font-size: 4rem;
+            color: #e63946;
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .fullscreen-message p {
+            font-size: 1.8rem;
+            color: #333;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .reset-button {
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+            font-weight: bold;
+        }
+        
+        .reset-button:hover {
+            background-color: #21867a;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.6);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .yes-button, .no-button {
+                font-size: 1.7rem;
+                padding: 15px 30px;
+                min-width: 170px;
+            }
+            
+            .buttons-container {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .yes-button, .no-button {
+                font-size: 1.5rem;
+                padding: 12px 25px;
+                min-width: 140px;
+            }
+            
+            .fullscreen-message h2 {
+                font-size: 2.5rem;
+            }
+            
+            .fullscreen-message p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selin mau gaa jadi valentine nya akuu?</h1>
+
+        <img src="dudu.gif" alt="Valentine Image" class="valentine-image">
+
+        <div class="buttons-container">
+            <button class="yes-button">Mauuu!</button>
+            <button class="no-button">GA!</button>
+        </div>
+        
+        <div class="message">Are you positive?</div>
+        
+        <div class="counter">"GA!" clicks: <span id="no-count">0</span></div>
+    </div>
+    
+    <div class="fullscreen-message" id="fullscreen-message">
+        <h2>Thank you! ❤️</h2>
+        <p>You've made my day! Happy Valentine's Day!</p>
+        <button class="reset-button" id="reset-button">Try Again</button>
+    </div>
+    
+    <div class="hearts" id="hearts-container"></div>
+    
+    <script>
+        // Messages that will appear when clicking the "No" button
+        const messages = [
+            "Yakinn?",
+            "Beneran yakin nih sengg?",
+            "Mending pikirin lagii 😏",
+            "Aku kasih pilihan terakhir sengg!",
+            "Beneran gamau sengg :(?",
+            "Mungkin kamu bakalan nyesel kalau gamauu 🙄",
+            "Pikirin lagii!",
+            "Kamu nyesel lho ntar sengg!",
+            "iiiii ayolah sayangg!",
+            "Jangan sok dingin dungg 😓",
+            "Berubah pikiran kah seng?",
+            "Bukannya kamu bakal pertimbangin lagii?",
+            "Ini jawaban akhir kamu?",
+            "Aku akit ati 😓!",
+            "Suka?",
+            "Please?",
+            "Just say yes sayangg!",
+            "Aku sedi cii sayangg 🙄!",
+            "1x lagi?",
+            "Okay, fine. Aku berhenti nanya 🙄"
+        ];
+        
+        let messageIndex = 0;
+        let noClickCount = 0;
+        let yesButtonSize = 2; // Starting font size in rem
+        const maxSize = 50; // Maximum font size in rem
+        const yesButton = document.querySelector('.yes-button');
+        const noButton = document.querySelector('.no-button');
+        const messageElement = document.querySelector('.message');
+        const noCountElement = document.getElementById('no-count');
+        const fullscreenMessage = document.getElementById('fullscreen-message');
+        const resetButton = document.getElementById('reset-button');
+        const heartsContainer = document.getElementById('hearts-container');
+        
+        // Create floating hearts
+        function createHearts() {
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Handle "No" button click
+        function handleNoClick() {
+            // Change the text of the "No" button
+            noButton.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+            
+            // Update click counter
+            noClickCount++;
+            noCountElement.textContent = noClickCount;
+            
+            // Increase the size of the "Yes" button
+            yesButtonSize = Math.min(yesButtonSize * 1.4, maxSize);
+            yesButton.style.fontSize = `${yesButtonSize}rem`;
+            
+            // Update the message
+            if (noClickCount === 1) {
+                messageElement.textContent = "Are you sure?";
+            } else if (noClickCount === 3) {
+                messageElement.textContent = "Please reconsider!";
+            } else if (noClickCount === 5) {
+                messageElement.textContent = "I really like you!";
+            } else if (noClickCount === 7) {
+                messageElement.textContent = "You're breaking my heart!";
+            } else if (noClickCount >= 10) {
+                messageElement.textContent = "OK, I'll stop asking... but please say yes!";
+                
+                // Make the "No" button start moving around after many clicks
+                if (noClickCount > 10) {
+                    moveNoButton();
+                }
+            }
+            
+            // When the "Yes" button gets very large, hide the "No" button
+            if (yesButtonSize >= 15) {
+                noButton.style.opacity = "0.7";
+                noButton.style.transform = "scale(0.9)";
+            }
+            
+            if (yesButtonSize >= 25) {
+                noButton.style.opacity = "0.4";
+                noButton.style.transform = "scale(0.7)";
+            }
+            
+            if (yesButtonSize >= 35) {
+                noButton.style.opacity = "0.2";
+                noButton.style.transform = "scale(0.5)";
+            }
+            
+            // When the "Yes" button fills the screen
+            if (yesButtonSize >= maxSize - 5) {
+                // Hide the "No" button completely
+                noButton.style.display = "none";
+                messageElement.textContent = "Yay! You're the best! ❤️";
+                
+                // Show the fullscreen message after a short delay
+                setTimeout(() => {
+                    fullscreenMessage.classList.add('active');
+                }, 1000);
+            }
+            
+            // Create a new heart animation
+            createNewHeart();
+        }
+        
+        // Make the "No" button move around after many clicks
+        function moveNoButton() {
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Calculate random position within the container
+            const maxX = containerRect.width - noButton.offsetWidth;
+            const maxY = containerRect.height - noButton.offsetHeight;
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            // Apply the new position
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+            
+            // Add a shake effect
+            noButton.style.animation = 'shake 0.5s';
+            
+            // Remove the animation after it completes
+            setTimeout(() => {
+                noButton.style.animation = '';
+            }, 500);
+        }
+        
+        // Create a new heart animation at a random position
+        function createNewHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.top = `${Math.random() * 100}%`;
+            heart.style.animationDelay = '0s';
+            heart.style.fontSize = `${Math.random() * 30 + 20}px`;
+            heart.style.opacity = '0.9';
+            heartsContainer.appendChild(heart);
+            
+            // Remove the heart after animation completes
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, 6000);
+        }
+        
+        // Handle "Yes" button click
+        function handleYesClick() {
+            // Show the fullscreen message immediately
+            fullscreenMessage.classList.add('active');
+            
+            // Add more hearts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createNewHeart();
+                }, i * 100);
+            }
+            
+            // Play a celebration sound if available
+            playCelebrationSound();
+        }
+        
+        // Play a celebration sound
+        function playCelebrationSound() {
+            // Try to play a sound using the Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+                oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E5
+                oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G5
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                // Sound not supported or permission issues
+                console.log("Audio not available");
+            }
+        }
+        
+        // Reset the application
+        function resetApp() {
+            // Reset all variables
+            messageIndex = 0;
+            noClickCount = 0;
+            yesButtonSize = 2;
+            
+            // Reset UI elements
+            noButton.textContent = "No";
+            yesButton.style.fontSize = `${yesButtonSize}rem`;
+            messageElement.textContent = "Are you positive?";
+            noCountElement.textContent = "0";
+            noButton.style.display = "block";
+            noButton.style.opacity = "1";
+            noButton.style.transform = "scale(1)";
+            noButton.style.position = "static";
+            noButton.style.left = "";
+            noButton.style.top = "";
+            noButton.style.animation = "";
+            
+            // Hide fullscreen message
+            fullscreenMessage.classList.remove('active');
+        }
+        
+        // Add event listeners
+        noButton.addEventListener('click', handleNoClick);
+        yesButton.addEventListener('click', handleYesClick);
+        resetButton.addEventListener('click', resetApp);
+        
+        // Add a keypress event for accessibility
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'y' || event.key === 'Y') {
+                handleYesClick();
+            } else if (event.key === 'n' || event.key === 'N') {
+                handleNoClick();
+            } else if (event.key === 'Escape' && fullscreenMessage.classList.contains('active')) {
+                resetApp();
+            }
+        });
+        
+        // Create initial hearts on load
+        createHearts();
+        
+        // Add shake animation for the no button
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% {transform: translateX(0);}
+                10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+                20%, 40%, 60%, 80% {transform: translateX(5px);}
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
