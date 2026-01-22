@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Valentine untuk Sayang ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="hearts-background"></div>
+    
+    <!-- Halaman Pembuka -->
+    <section id="home" class="page active">
+        <div class="container">
+            <h1 class="title animate__animated animate__heartBeat">❤️ Untuk Cintaku ❤️</h1>
+            <div class="photo-frame">
+                <!-- GANTI FOTO KALIAN DI SINI -->
+                <img src="images/foto-kalian.jpg" alt="Foto Kita" id="our-photo">
+            </div>
+            <p class="subtitle">Halo Sayang, <span id="lover-name">[Nama Pacarmu]</span>! 💖</p>
+            <p>Aku punya petualangan kecil untuk kita hari ini. Selesaikan tantangan ini untuk mendapatkan kejutan!</p>
+            <button id="start-btn" class="btn">Mulai Petualangan Cinta <i class="fas fa-play"></i></button>
+            <p class="hint"><i class="fas fa-lightbulb"></i> Siapkan ingatan terindah tentang kita!</p>
+        </div>
+    </section>
+
+    <!-- Game 1: Puzzle -->
+    <section id="game1" class="page">
+        <div class="container">
+            <h2><i class="fas fa-puzzle-piece"></i> Puzzle Kenangan</h2>
+            <p class="game-instruction">Susun potongan foto kita yang pertama!</p>
+            <div id="puzzle-container">
+                <!-- Puzzle akan di-generate oleh JavaScript -->
+            </div>
+            <p class="hint">Drag and drop potongan gambar untuk menyusunnya</p>
+            <button id="hint1-btn" class="btn-small"><i class="fas fa-lightbulb"></i> Bantuan</button>
+            <div id="game1-message" class="hidden">
+                <p class="success">"Ingat saat pertama kali kita bertemu? Aku langsung tahu kamu spesial ❤️"</p>
+                <button id="next1-btn" class="btn">Lanjut ke Tantangan Berikutnya <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game 2: Tebak Kata -->
+    <section id="game2" class="page">
+        <div class="container">
+            <h2><i class="fas fa-keyboard"></i> Tebak Kata Cinta</h2>
+            <p class="game-instruction">Isi huruf yang hilang! Clue: Perasaan yang tumbuh antara kita berdua</p>
+            <div class="word-puzzle">
+                <div class="word-container">
+                    <div class="letter-box">C</div>
+                    <div class="letter-box">I</div>
+                    <div class="letter-box empty" data-letter="N">?</div>
+                    <div class="letter-box">T</div>
+                    <div class="letter-box empty" data-letter="A">?</div>
+                </div>
+            </div>
+            <p>Pilih huruf yang tepat:</p>
+            <div class="letter-options">
+                <button class="letter-option" data-letter="N">N</button>
+                <button class="letter-option" data-letter="A">A</button>
+                <button class="letter-option" data-letter="M">M</button>
+                <button class="letter-option" data-letter="E">E</button>
+            </div>
+            <div id="game2-message" class="hidden">
+                <p class="success">"Benar! CINTA memang yang kita rasakan 💕"</p>
+                <p class="memory-text">"Aku ingat pertama kali aku berani bilang 'aku cinta kamu' ke kamu. Deg-degan banget!"</p>
+                <button id="next2-btn" class="btn">Tantangan Terakhir! <i class="fas fa-flag-checkered"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game 3: Kuis -->
+    <section id="game3" class="page">
+        <div class="container">
+            <h2><i class="fas fa-question-circle"></i> Kuis Kenangan Kita</h2>
+            <p class="game-instruction">Jawab pertanyaan tentang kita!</p>
+            
+            <div class="quiz-question">
+                <p>1. Di mana kita pertama kali ketemu?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">Kafe</button>
+                    <button class="quiz-option" data-correct="true">Kampus</button>
+                    <button class="quiz-option" data-correct="false">Konser</button>
+                    <button class="quiz-option" data-correct="false">Taman</button>
+                </div>
+            </div>
+            
+            <div class="quiz-question">
+                <p>2. Makanan favorit kita berdua?</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="true">Sushi</button>
+                    <button class="quiz-option" data-correct="false">Pizza</button>
+                    <button class="quiz-option" data-correct="false">Bakso</button>
+                    <button class="quiz-option" data-correct="false">Rendang</button>
+                </div>
+            </div>
+            
+            <div class="quiz-question">
+                <p>3. Aku paling suka ketika kamu...</p>
+                <div class="quiz-options">
+                    <button class="quiz-option" data-correct="false">Marah-marah</button>
+                    <button class="quiz-option" data-correct="true">Tertawa lepas</button>
+                    <button class="quiz-option" data-correct="false">Diam saja</button>
+                    <button class="quiz-option" data-correct="false">Sedih</button>
+                </div>
+            </div>
+            
+            <div id="game3-message" class="hidden">
+                <p class="success animate__animated animate__tada">🎉 Selamat! Kamu berhasil membuka semua kunci! 🎉</p>
+                <button id="final-btn" class="btn-final">BUKA SURPRISE TERAKHIR! <i class="fas fa-gift"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Halaman Final: Surat -->
+    <section id="final" class="page">
+        <div class="container final-container">
+            <div class="envelope" id="envelope">
+                <div class="envelope-front"></div>
+                <div class="envelope-back"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <h2><i class="fas fa-heart"></i> Untuk Cintaku, <span id="lover-name-final">[Nama Pacarmu]</span></h2>
+                        <div class="date">14 Februari 2024</div>
+                        
+                        <div class="letter-text">
+                            <!-- GANTI ISI SURAT INI -->
+                            <p>Sayangku,</p>
+                            <p>Setiap hari bersamamu adalah halaman baru dalam cerita terindah hidupku. Terima kasih sudah membuat setiap detik berharga, setiap tawa bermakna, dan setiap pelukan terasa seperti rumah.</p>
+                            <p>Aku bersyukur memiliki seseorang seperti kamu - yang sabar dengan kekuranganku, yang mendukung mimpiku, dan yang mencintaiku apa adanya.</p>
+                            <p>Di hari Valentine ini, aku ingin mengulang janji: Aku akan selalu ada, mencintai, dan menghargai kamu. Mari kita buat lebih banyak kenangan indah bersama.</p>
+                            <p class="signature">Dengan semua cintaku,<br><span class="your-name">[Namamu]</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="open-envelope" class="btn"><i class="fas fa-envelope-open"></i> Buka Surat Cintaku</button>
+            
+            <div class="extra-gifts hidden" id="extra-gifts">
+                <h3><i class="fas fa-star"></i> Hadiah Tambahan untuk Kamu</h3>
+                
+                <div class="gift-cards">
+                    <div class="gift-card" id="gift1">
+                        <i class="fas fa-music"></i>
+                        <h4>Playlist Cinta</h4>
+                        <p>Kumpulan lagu yang mengingatkanku padamu</p>
+                        <!-- GANTI LINK SPOTIFY/YT -->
+                        <a href="https://open.spotify.com/playlist/5viHFg3oeEuJiHdxCCgLw3?si=5202522cd601489b&pt=d4bfdb842a930293cbe12d58f8cbe55e" target="_blank" class="gift-btn">Dengarkan</a>
+                    </div>
+                    
+                    <div class="gift-card" id="gift2">
+                        <i class="fas fa-calendar-star"></i>
+                        <h4>Kupon Janji</h4>
+                        <p>Tukarkan kupon ini kapan saja!</p>
+                        <button class="gift-btn" id="coupon-btn">Lihat Kupon</button>
+                    </div>
+                    
+                    <div class="gift-card" id="gift3">
+                        <i class="fas fa-images"></i>
+                        <h4>Galeri Kenangan</h4>
+                        <p>Foto-foto favorit kita</p>
+                        <button class="gift-btn" id="gallery-btn">Lihat Foto</button>
+                    </div>
+                </div>
+                
+                <div class="countdown">
+                    <h4><i class="fas fa-clock"></i> Menuju Anniversary Kita:</h4>
+                    <div class="countdown-timer">
+                        <div class="countdown-box">
+                            <span id="days">00</span>
+                            <small>Hari</small>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="hours">00</span>
+                            <small>Jam</small>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="minutes">00</span>
+                            <small>Menit</small>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="seconds">00</span>
+                            <small>Detik</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="reset-btn" class="btn-small">Main Lagi dari Awal</button>
+            </div>
+            
+            <!-- Modal untuk Kupon -->
+            <div id="coupon-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3><i class="fas fa-ticket-alt"></i> Kupon Janji untuk Kamu</h3>
+                    <div class="coupon">
+                        <div class="coupon-header">KUPON SPESIAL VALENTINE</div>
+                        <div class="coupon-body">
+                            <p>Pemegang kupon: <strong>[Nama Pacarmu]</strong></p>
+                            <p>Berhak mendapatkan: <strong>1x Date Spesial</strong></p>
+                            <p>Tempat: <strong>Restoran favorit kamu</strong></p>
+                            <p>Waktu: <strong>Kapan saja kamu mau</strong></p>
+                            <p class="coupon-note">Kupon ini berlaku selamanya. Cintaku untukmu juga tak terbatas waktu ❤️</p>
+                        </div>
+                        <div class="coupon-footer">Diberikan dengan cinta oleh [Namamu]</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal untuk Galeri -->
+            <div id="gallery-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3><i class="fas fa-heart"></i> Galeri Kenangan Kita</h3>
+                    <div class="gallery">
+                        <!-- GANTI FOTO-FOTO KALIAN DI SINI -->
+                        <div class="gallery-item">Foto 1 Kita</div>
+                        <div class="gallery-item">Foto 2 Kita</div>
+                        <div class="gallery-item">Foto 3 Kita</div>
+                        <div class="gallery-item">Foto 4 Kita</div>
+                    </div>
+                    <p>Setiap foto adalah cerita, setiap cerita adalah cinta kita.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Konfetti -->
+    <canvas id="confetti-canvas"></canvas>
+    
+    <!-- Audio -->
+    <audio id="bg-music" loop>
+        <!-- GANTI LINK LAGU ROMANTIS -->
+        <source src="https://assets.mixkit.co/music/preview/mixkit-loving-you-117.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="music-toggle" class="music-btn">
+        <i class="fas fa-music"></i>
+        <i class="fas fa-volume-mute hidden"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
